@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class NPC : MonoBehaviour
+public class NPC : MonoBehaviour, IHit
 {
     GameObject target; // Reference to the target object
     Sight sight; // Reference to the Sight component
@@ -42,5 +42,9 @@ public class NPC : MonoBehaviour
             OnTagPlayer.Invoke();
             // Log a message indicating the collision with the target
         }
+    }
+    public void Hit(GameObject other)
+    {
+        Debug.Log($"I {gameObject.name} got hit by {other.name}");
     }
 }

@@ -71,7 +71,16 @@ public class Slingshot : MonoBehaviour
 
     void OnHit(GameObject hitObject)
     {
-        
+        Debug.Log($"Hit {hitObject.name}");
+        if (hitObject.TryGetComponent<IHit>(out var hit))
+        {
+            Debug.Log("Hit a hit interface");
+            hit.Hit(gameObject);
+        }
+        else
+        {
+            Debug.Log("Did not hit a hit interface");
+        }
     }
 
     void Update()
