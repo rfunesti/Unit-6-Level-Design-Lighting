@@ -10,6 +10,7 @@ public class NPC : MonoBehaviour, IHit
     PlayerMovement playerMovement; // Reference to the PlayerMovement component
     public float rotationRate = 180f; // Rate at which the NPC rotates towards the target
     public UnityEvent OnTagPlayer = new UnityEvent();
+    Animator animator;
 
     void Awake()
     {
@@ -17,6 +18,7 @@ public class NPC : MonoBehaviour, IHit
         playerMovement = GetComponent<PlayerMovement>(); // Get the PlayerMovement component attached to the NPC
         target = GameObject.FindWithTag("Player"); // Find the target object with the "Player" tag
         sight.target = target; // Assign the target object to the Sight component
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -46,5 +48,6 @@ public class NPC : MonoBehaviour, IHit
     public void Hit(GameObject other)
     {
         Debug.Log($"I {gameObject.name} got hit by {other.name}");
+        animator.SetTrigger("Hit");
     }
 }
