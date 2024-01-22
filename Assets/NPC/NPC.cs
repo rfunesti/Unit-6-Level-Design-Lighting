@@ -44,6 +44,10 @@ public class NPC : MonoBehaviour, IHit
             OnTagPlayer.Invoke();
             // Log a message indicating the collision with the target
         }
+        if (collision.gameObject.TryGetComponent<IHit>(out var hit))
+        {
+            hit.Hit(gameObject);
+        }
     }
     public void Hit(GameObject other)
     {
